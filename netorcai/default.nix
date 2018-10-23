@@ -2,22 +2,22 @@
 
 buildGoPackage rec {
   name = "netorcai-${version}";
-  version = "1.0.0";
+  version = "1.0.1";
   rev = "v${version}";
 
-  goPackagePath = "github.com/mpoquet/netorcai";
+  goPackagePath = "github.com/netorcai/netorcai";
 
   src = fetchgit {
     inherit rev;
-    url = "https://github.com/mpoquet/netorcai.git";
-    sha256 = "016grc118yafa7sbn7h8lrqp21hc9awknhs5rcz6br181nkqbk02";
+    url = "https://github.com/netorcai/netorcai.git";
+    sha256 = "0r88y0vah491281v3k9ryjijgvcbkg17v45jmbcd08nizfijvp8d";
   };
 
   goDeps = ./deps.nix;
 
   meta = {
     description = "A network orchestrator for artificial intelligence games";
-    homepage = "https://github.com/mpoquet/netorcai";
+    homepage = "https://github.com/netorcai/netorcai";
     license = stdenv.lib.licenses.gpl3;
     platforms = stdenv.lib.platforms.linux;
   };
