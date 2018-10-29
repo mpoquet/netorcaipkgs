@@ -14,6 +14,7 @@ let
     inherit pkgs;
 
     netorcai = callPackage ./netorcai {};
+    netorcai_dev = callPackage ./netorcai/dev.nix {};
   };
 in
   self
