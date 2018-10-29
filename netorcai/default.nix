@@ -2,7 +2,7 @@
 
 buildGoPackage rec {
   name = "netorcai-${version}";
-  version = "1.0.1";
+  version = "1.1.0";
   rev = "v${version}";
 
   goPackagePath = "github.com/netorcai/netorcai";
@@ -10,7 +10,7 @@ buildGoPackage rec {
   src = fetchgit {
     inherit rev;
     url = "https://github.com/netorcai/netorcai.git";
-    sha256 = "0r88y0vah491281v3k9ryjijgvcbkg17v45jmbcd08nizfijvp8d";
+    sha256 = "1mlfdxyz2j6jm321nnvivq6kjjicd44c62qv4kp6r3xihcciccwn";
   };
 
   goDeps = ./deps.nix;
