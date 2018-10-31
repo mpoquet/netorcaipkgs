@@ -13,8 +13,13 @@ let
   self = rec {
     inherit pkgs;
 
+    # Orchestrator
     netorcai = callPackage ./netorcai {};
     netorcai_dev = callPackage ./netorcai/dev.nix {};
+
+    # Games
+    hexabomb = callPackage ./hexabomb {};
+    hexabomb_dev = callPackage ./hexabomb/dev.nix {};
   };
 in
   self
