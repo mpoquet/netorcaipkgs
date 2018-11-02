@@ -8,7 +8,7 @@ in
 
 let
   # Add libraries to the scope of callPackage
-  callPackage = pkgs.lib.callPackageWith (pkgs // pkgs.xlibs // kapack // self);
+  callPackage = pkgs.lib.callPackageWith (kapack // pkgs // pkgs.xlibs // self);
 
   self = rec {
     inherit pkgs;
@@ -20,6 +20,13 @@ let
     # Games
     hexabomb = callPackage ./hexabomb {};
     hexabomb_dev = callPackage ./hexabomb/dev.nix {};
+
+    # Client libraries
+    netorcai_client_cpp_dev = callPackage ./netorcai-client-cpp/dev.nix {};
+
+    # Misc.
+    rapidjson = callPackage ./rapidjson {};
+    gtest = callPackage ./gtest {};
   };
 in
   self
