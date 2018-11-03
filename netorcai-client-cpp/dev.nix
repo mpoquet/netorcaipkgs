@@ -1,4 +1,4 @@
-{ stdenv, meson, ninja, rapidjson, pkgconfig, gtest
+{ stdenv, meson, ninja, rapidjson, pkgconfig, gtest, pythonPackages,
 }:
 
 stdenv.mkDerivation rec {
@@ -7,7 +7,7 @@ stdenv.mkDerivation rec {
 
   src = fetchTarball "https://github.com/netorcai/netorcai-client-cpp/archive/master.tar.gz";
 
-  nativeBuildInputs = [ meson ninja pkgconfig ];
+  nativeBuildInputs = [ meson ninja pkgconfig pythonPackages.gcovr ];
   buildInputs = [ rapidjson gtest ];
   enableParallelBuilding = true;
 
@@ -23,12 +23,15 @@ stdenv.mkDerivation rec {
     "-Db_coverage=true"
   ];
 
+  buildPhase = ''
+    ninja
+    ninja test
+    ninja coverage-text
+  '';
+
   installPhase = ''
-    # Generate coverage results
-    find netorcai-client@sha -name '*.gcda' -exec gcov {} \;
     ninja install
-    mkdir -p $out/coverage
-    install -D *.gcov $out/coverage
+    install -D meson-logs/coverage.txt $out/
   '';
 
   doCheck = true;
