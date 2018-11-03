@@ -17,8 +17,18 @@ stdenv.mkDerivation rec {
 
   preConfigure = ''
     export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:${rapidjson}/lib/pkgconfig:${gtest}/lib/pkgconfig
-    echo $PKG_CONFIG_PATH | tr ':' '\n'
-    echo
+  '';
+
+  mesonFlags = [
+    "-Db_coverage=true"
+  ];
+
+  installPhase = ''
+    # Generate coverage results
+    find netorcai-client@sha -name '*.gcda' -exec gcov {} \;
+    ninja install
+    mkdir -p $out/coverage
+    install -D *.gcov $out/coverage
   '';
 
   doCheck = true;
