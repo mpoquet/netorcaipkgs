@@ -11,10 +11,6 @@ stdenv.mkDerivation rec {
   buildInputs = [ rapidjson gtest ];
   enableParallelBuilding = true;
 
-  patchPhase = ''
-    sed -i -E "s/'gtest'(.*) main: true,/'gtest_main'\1/" meson.build
-  '';
-
   preConfigure = ''
     export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:${rapidjson}/lib/pkgconfig:${gtest}/lib/pkgconfig
   '';
