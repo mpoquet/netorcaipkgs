@@ -1,4 +1,4 @@
-{ stdenv, meson, ninja, rapidjson, pkgconfig, gtest, pythonPackages,
+{ stdenv, meson, ninja, nlohmann_json_pkgc, sfml, pkgconfig, gtest, pythonPackages,
 }:
 
 stdenv.mkDerivation rec {
@@ -8,12 +8,8 @@ stdenv.mkDerivation rec {
   src = fetchTarball "https://github.com/netorcai/netorcai-client-cpp/archive/master.tar.gz";
 
   nativeBuildInputs = [ meson ninja pkgconfig pythonPackages.gcovr ];
-  buildInputs = [ rapidjson gtest ];
+  buildInputs = [ nlohmann_json_pkgc sfml gtest ];
   enableParallelBuilding = true;
-
-  preConfigure = ''
-    export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:${rapidjson}/lib/pkgconfig:${gtest}/lib/pkgconfig
-  '';
 
   mesonFlags = [
     "-Db_coverage=true"
