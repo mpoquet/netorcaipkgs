@@ -27,6 +27,7 @@ let
     # Misc.
     rapidjson = callPackage ./rapidjson {};
     gtest = callPackage ./gtest {};
+    nlohmann_json_pkgc = callPackage ./nlohmann_json {};
   };
 in
   self
