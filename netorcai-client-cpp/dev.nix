@@ -1,4 +1,5 @@
-{ stdenv, meson, ninja, nlohmann_json_pkgc, sfml, pkgconfig, gtest, pythonPackages,
+{ stdenv, meson, ninja, nlohmann_json_pkgc, sfml, pkgconfig, pythonPackages,
+  doTests? false, netorcai_dev, gtest, psmisc
 }:
 
 stdenv.mkDerivation rec {
@@ -8,7 +9,8 @@ stdenv.mkDerivation rec {
   src = fetchTarball "https://github.com/netorcai/netorcai-client-cpp/archive/master.tar.gz";
 
   nativeBuildInputs = [ meson ninja pkgconfig pythonPackages.gcovr ];
-  buildInputs = [ nlohmann_json_pkgc sfml gtest ];
+  buildInputs = [ nlohmann_json_pkgc sfml ] ++
+    stdenv.lib.optionals doTests [gtest netorcai_dev psmisc];
   enableParallelBuilding = true;
 
   mesonFlags = [
@@ -26,7 +28,7 @@ stdenv.mkDerivation rec {
     install -D meson-logs/coverage.txt $out/
   '';
 
-  doCheck = true;
+  doCheck = doTests;
   meta = with stdenv.lib; {
     description = "C++ version of the netorcai client library.";
     homepage    = "https://github.com/netorcai/netorcai-client-cpp";
