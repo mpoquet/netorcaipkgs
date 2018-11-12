@@ -13,16 +13,16 @@ For example, you can install the [netorcai orchestrator] with one of the followi
 nix-env -f https://github.com/netorcai/pkgs/archive/master.tar.gz -iA netorcai
 
 # Install dev version (master branch latest commit).
-nix-env -f https://github.com/netorcai/pkgs/archive/master.tar.gz -iA netorcai
+nix-env -f https://github.com/netorcai/pkgs/archive/master.tar.gz -iA netorcai_dev
 ```
 
-Please read [./default.nix] for a list of all available packages.
+Please read [./default.nix] for a list of all available packages.  
 No knowledge in the [Nix language] should be required to read this file,
 just look for ``callPackage`` :).
 
 Customizing packages
 --------------------
-Most packages have input parameters that can be tuned.
+Most packages have input parameters that can be tuned.  
 For example, the package of the [C++ version of the netorcai client library]
 defines the ``doTests`` and ``doCodeDoc`` options.
 
@@ -33,19 +33,19 @@ You can set these options with the ``--arg`` command-line argument of ``nix-env`
 # Note 1: Result will be put in ./result
 # Note 2: You can use netorcai_client_cpp_dev to use latest master commit instead.
 nix-build https://github.com/netorcai/pkgs/archive/master.tar.gz \
-    -A netorcai_client_cpp \
-    --arg doTests true \
-    --arg doCodeDoc true
+          -A netorcai_client_cpp \
+          --arg doTests true \
+          --arg doCodeDoc true
 
 # Install the latest commit of the C++ client library but only if tests pass.
 # Note 1: Make sure that your PATH environment variable contains
-          ${HOME}/.nix-profile/bin if you want to install executable binaries.
+#         ${HOME}/.nix-profile/bin if you want to install executable binaries.
 # Note 2: Make sure that your PKG_CONFIG_PATH environment variable contains
-          ${HOME}/.nix-profile/lib/pkgconfig if you want to install libraries.
+#         ${HOME}/.nix-profile/lib/pkgconfig if you want to install libraries.
 nix-env -f https://github.com/netorcai/pkgs/archive/master.tar.gz \
-    -iA netorcai_client_cpp_dev \
-    --arg doTests true \
-    --arg doCodeDoc false
+        -iA netorcai_client_cpp_dev \
+        --arg doTests true \
+        --arg doCodeDoc false
 ```
 
 Please read the definition of each package for a list of the available options.
