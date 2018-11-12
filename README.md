@@ -16,9 +16,9 @@ nix-env -f https://github.com/netorcai/pkgs/archive/master.tar.gz -iA netorcai
 nix-env -f https://github.com/netorcai/pkgs/archive/master.tar.gz -iA netorcai
 ```
 
-Please read [./default.nix] to have a list of all the available packages
-(understanding all of this file requires knowledge in the [Nix language],
-but listing the packages should not).
+Please read [./default.nix] for a list of all available packages.
+No knowledge in the [Nix language] should be required to read this file,
+just look for ``callPackage`` :).
 
 Customizing packages
 --------------------

@@ -1,3 +1,7 @@
+# These are input variables to the main repository.
+# Syntax is `variable ? default_value [, ...]`.
+# Default values can be overriden with the --arg command-line argument
+# (man nix-env or https://nixos.org/nix/manual/#sec-common-options)
 {
   pkgs ? import
     (fetchTarball "https://github.com/NixOS/nixpkgs/archive/18.09.tar.gz") {},
@@ -11,6 +15,7 @@ let
   # Add libraries to the scope of callPackage
   callPackage = pkgs.lib.callPackageWith (kapack // pkgs // pkgs.xlibs // self);
 
+  # The list of packages starts here.
   self = rec {
     inherit pkgs;
 
