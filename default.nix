@@ -4,7 +4,8 @@
   kapack ? import
     ( fetchTarball "https://github.com/oar-team/kapack/archive/fe342846a8dfccc85077798357f9d7a9e889a8c7.tar.gz")
   { inherit pkgs; },
-  doTests ? false
+  doTests ? false,
+  doCodeDoc ? true
 }:
 let
   # Add libraries to the scope of callPackage
@@ -22,8 +23,10 @@ let
     hexabomb_dev = callPackage ./hexabomb/dev.nix {};
 
     # Client libraries
+    netorcai_client_cpp = callPackage ./netorcai-client-cpp
+      { inherit doTests; inherit doCodeDoc; };
     netorcai_client_cpp_dev = callPackage ./netorcai-client-cpp/dev.nix
-      { inherit doTests; };
+      { inherit doTests; inherit doCodeDoc; };
 
     # Misc.
     rapidjson = callPackage ./rapidjson {};
