@@ -1,20 +1,21 @@
-{ stdenv, fetchurl, meson, ninja, pkgconfig }:
+{ stdenv, fetchzip, meson, ninja, pkgconfig }:
 
 stdenv.mkDerivation rec {
   name = "nlohmann_json-${version}";
   version = "3.4.0";
 
-  src = fetchurl {
-    url = "https://github.com/nlohmann/json/releases/download/v${version}/json.hpp";
-    sha256 = "63da6d1f22b2a7bb9e4ff7d6b255cf691a161ff49532dcc45d398a53e295835f";
+  src = fetchzip {
+    url = "https://github.com/nlohmann/json/releases/download/v${version}/include.zip";
+    sha256 = "1p7yasc3z0s9q181vj3pb7bwagjpljnvl6005h6fvli6zanz0zyw";
   };
 
-  # Not unpacking a tarball here, just copying a single file.
-  unpackPhase = ''
-    cp ${src} ./json.hpp
+  prePatch = ''
+    # Nix unzips the archive too much.
+    mkdir include
+    mv nlohmann include/
   '';
 
-  patches = [ ./make-buildable-and-installable-from-meson.patch ];
+  patches = [ ./add-meson.patch ];
   postPatch = ''
     # Update version in meson description if needed
     sed -i -E "s/3.4.0/${version}/" meson.build
