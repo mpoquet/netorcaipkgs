@@ -1,10 +1,24 @@
-{ stdenv, meson, ninja, pkgconfig }:
+{ stdenv, fetchurl, meson, ninja, pkgconfig }:
 
 stdenv.mkDerivation rec {
   name = "nlohmann_json-${version}";
-  version = "3.4.1-dev-pkgc";
+  version = "3.4.0";
 
-  src = fetchTarball "https://github.com/nlohmann/json/tarball/ffe08983dd419c17aab44d9d02faaf5a372e0438";
+  src = fetchurl {
+    url = "https://github.com/nlohmann/json/releases/download/v${version}/json.hpp";
+    sha256 = "63da6d1f22b2a7bb9e4ff7d6b255cf691a161ff49532dcc45d398a53e295835f";
+  };
+
+  # Not unpacking a tarball here, just copying a single file.
+  unpackPhase = ''
+    cp ${src} ./json.hpp
+  '';
+
+  patches = [ ./make-buildable-and-installable-from-meson.patch ];
+  postPatch = ''
+    # Update version in meson description if needed
+    sed -i -E "s/3.4.0/${version}/" meson.build
+  '';
 
   nativeBuildInputs = [ meson ninja pkgconfig ];
 
