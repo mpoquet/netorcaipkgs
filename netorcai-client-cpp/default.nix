@@ -10,7 +10,7 @@ stdenv.mkDerivation rec {
   src = fetchTarball "https://github.com/netorcai/netorcai-client-cpp/archive/v${version}.tar.gz";
 
   nativeBuildInputs = [meson ninja pkgconfig pythonPackages.gcovr];
-  buildInputs = [nlohmann_json sfml] ++
+  propagatedBuildInputs = [nlohmann_json sfml] ++
     stdenv.lib.optionals doTests [gtest netorcai_dev psmisc] ++
     stdenv.lib.optionals doCodeDoc [doxygen gnutar];
   enableParallelBuilding = true;
