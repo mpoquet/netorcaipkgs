@@ -1,13 +1,18 @@
-{ stdenv, meson, ninja, nlohmann_json, sfml, pkgconfig, pythonPackages,
+{ stdenv, fetchgit, meson, ninja, pkgconfig, pythonPackages,
+  nlohmann_json, sfml,
   doTests? false, netorcai_dev, gtest, psmisc,
   doCodeDoc? false, doxygen, gnutar
 }:
 
 stdenv.mkDerivation rec {
   name = "netorcai-client-cpp-${version}";
-  version = "1.0.0";
+  version = "1.1.0";
 
-  src = fetchTarball "https://github.com/netorcai/netorcai-client-cpp/archive/v${version}.tar.gz";
+  src = fetchgit {
+    rev = "v${version}";
+    url = "https://github.com/netorcai/netorcai-client-cpp.git";
+    sha256 = "1vg6dka6wafnx29wx03b55pp3ld74vlxjhhi6csj3s39v3ciydhl";
+  };
 
   nativeBuildInputs = [meson ninja pkgconfig pythonPackages.gcovr];
   propagatedBuildInputs = [nlohmann_json sfml] ++
