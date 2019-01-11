@@ -33,6 +33,10 @@ let
     netorcai_client_cpp_dev = callPackage ./netorcai-client-cpp/dev.nix
       { inherit doTests; inherit doCodeDoc; };
 
+    # Visualizations
+    hexabomb_visu = callPackage ./hexabomb-visu {};
+    hexabomb_visu_dev = callPackage ./hexabomb-visu/dev.nix {};
+
     # Misc.
     rapidjson = callPackage ./rapidjson {};
     gtest = callPackage ./gtest {};
