@@ -32,6 +32,8 @@ let
       { inherit doTests; inherit doCodeDoc; };
     netorcai_client_cpp_dev = callPackage ./netorcai-client-cpp/dev.nix
       { inherit doTests; inherit doCodeDoc; };
+    netorcai_client_fortran = callPackage ./netorcai-client-fortran
+      { inherit doTests; };
 
     # Visualizations
     hexabomb_visu = callPackage ./hexabomb-visu {};
