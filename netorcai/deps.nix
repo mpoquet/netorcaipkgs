@@ -14,8 +14,8 @@
     fetch = {
       type = "git";
       url = "https://github.com/mpoquet/go-prompt";
-      rev = "564f1629a5f4d7eb58a98712b28cf0e89e731b13";
-      sha256 = "0rxr7h1d3xjcjydw7nbafwmzrjirikfdm8c434r16h6xdk6yqf5f";
+      rev = "2861a1991fd3e68115d9534677e234d359240feb";
+      sha256 = "0grx0n8aia006k13nqb2d0vg5g0789w0wciq86ra1qnmxhm82zyb";
     };
   }
   {
