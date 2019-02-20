@@ -41,6 +41,7 @@ let
     rapidjson = callPackage ./rapidjson {};
     gtest = callPackage ./gtest {};
     nlohmann_json = callPackage ./nlohmann_json {};
+    zofu = callPackage ./zofu {};
   };
 in
   self
