@@ -6,12 +6,12 @@
 
 stdenv.mkDerivation rec {
   name = "netorcai-client-cpp-${version}";
-  version = "1.1.0";
+  version = "2.0.0";
 
   src = fetchgit {
     rev = "v${version}";
     url = "https://github.com/netorcai/netorcai-client-cpp.git";
-    sha256 = "1vg6dka6wafnx29wx03b55pp3ld74vlxjhhi6csj3s39v3ciydhl";
+    sha256 = "0x9bpqq4j0953y43r09skpqb7j46456sxck6zcdnry6xlya41g8h";
   };
 
   nativeBuildInputs = [meson ninja pkgconfig pythonPackages.gcovr];
