@@ -2,21 +2,21 @@
 
 stdenv.mkDerivation rec {
   name = "hexabomb-${version}";
-  version = "0.1.0";
+  version = "1.1.0";
 
   src = fetchgit {
     rev = "v${version}";
     url = "https://github.com/netorcai/hexabomb.git";
-    sha256 = "0wmw70acpm088im4sfm03l8bwl8g0dz90dci2zl8vcxib73bmd4m";
+    sha256 = "1hc6k7472r0craldipqz5hb158i0rr009lc598xbnk7xbpvy2lc7";
   };
 
   nativeBuildInputs = [ dmd dub ];
   enableParallelBuilding = true;
 
   buildPhase = ''
-    dub fetch --cache=local --version=1.0.0 netorcai-client
+    dub fetch --cache=local --version=2.0.0 netorcai-client
     dub fetch --cache=local --version=0.6.1-b.6 docopt
-    dmd -of=./hexabomb src/*.d netorcai-client-1.0.0/netorcai-client/src/netorcai/*.d docopt-0.6.1-b.6/docopt/source/*.d -fPIC -release -O
+    dmd -of=./hexabomb src/*.d netorcai-client-2.0.0/netorcai-client/src/netorcai/*.d docopt-0.6.1-b.6/docopt/source/*.d -fPIC -release -O
   '';
 
   installPhase = ''
