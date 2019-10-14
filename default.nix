@@ -1,12 +1,12 @@
-# These are input variables to the main repository.
+# These are input variables of the main repository.
 # Syntax is `variable ? default_value [, ...]`.
 # Default values can be overriden with the --arg command-line argument
 # (man nix-env or https://nixos.org/nix/manual/#sec-common-options)
 {
   pkgs ? import
-    (fetchTarball "https://github.com/NixOS/nixpkgs/archive/18.09.tar.gz") {},
+    (fetchTarball "https://github.com/NixOS/nixpkgs/archive/19.09.tar.gz") {},
   kapack ? import
-    ( fetchTarball "https://github.com/oar-team/kapack/archive/fe342846a8dfccc85077798357f9d7a9e889a8c7.tar.gz")
+    ( fetchTarball "https://github.com/oar-team/kapack/archive/8f56dcf1f4f43bda71449d2d2f9d4e5450be247c.tar.gz")
   { inherit pkgs; },
   doTests ? false,
   doCodeDoc ? true
