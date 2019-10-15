@@ -44,6 +44,7 @@ let
     gtest = callPackage ./gtest {};
     nlohmann_json = callPackage ./nlohmann_json {};
     zofu = callPackage ./zofu {};
+    serverize = callPackage ./serverize/Cargo.nix {};
   };
 in
   self
